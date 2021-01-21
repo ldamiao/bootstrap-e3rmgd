@@ -1,0 +1,42 @@
+<div class="card-body" [formGroup]="ativo_circulante">
+	<div class="title">
+		<div class="row b-bottom">
+			<div class="col-3">Ativo Circulante</div>
+			<div class="col-md-3 col-12" *ngFor="let year of anos">
+				<label>{{ year.year }}</label>
+			</div>
+			<div class="col-1 text-center">
+				<button class="btn" style="padding: 0px !important;" data-toggle="collapse"
+									[attr.data-target]="'#collapseAtivoCirculante'" role="button" aria-expanded="true"
+									[attr.aria-controls]="'collapseAtivoCirculante'">
+									<img src="/assets/images/down-arrow.svg" alt="" class="down-arrow" />
+								</button>
+			</div>
+		</div>
+	</div>
+	<div class="row collapse show" id="collapseAtivoCirculante" [attr.aria-labelledby]="'collapseAtivoCirculante'">
+		<div class="card-body">
+			<div *ngFor="let result of ativoCirculante; let j=index">
+					<div class="form-group" *ngFor="let res of result; let i=index">
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label>{{ res.name }}</label>
+              </div>
+              <div class="form-group col-md-3" *ngFor="let year of anos">
+                <input type="text" class="form-control" [formControlName]="ativoCirculante[j][i].order" (focusout)="calc()">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label>Total</label>
+            </div>
+            <div class="form-group col-md-3" *ngFor="let year of anos">
+              <input type="text" class="form-control" [value]="totalativoCirculante" disabled>
+            </div>
+        </div>
+			</div>
+			
+	  </div>
+	</div>
+</div>
